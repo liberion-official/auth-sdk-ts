@@ -3,4 +3,4 @@
 '@trust-proto/auth-react': patch
 ---
 
-CI workflow improvements
+CI workflow improvements and publish automation
