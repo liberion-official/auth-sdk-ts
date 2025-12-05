@@ -2,7 +2,7 @@ name: Publish
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: [CI]
     branches: [main]
     types: [completed]
   workflow_dispatch:
@@ -31,8 +31,8 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 24
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
+          registry-url: "https://registry.npmjs.org"
+          cache: "pnpm"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -48,7 +48,7 @@ jobs:
         with:
           publish: pnpm run release
           version: pnpm run version
-          title: 'chore: version packages'
-          commit: 'chore: version packages'
+          title: "chore: version packages"
+          commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
