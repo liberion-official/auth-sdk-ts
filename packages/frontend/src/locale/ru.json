@@ -1,0 +1,20 @@
+{
+    "app.auth_success": "Доступ предоставлен",
+    "app.auth_in_progress": "Авторизация в процессе..",
+    "app.auth_failed": "Авторизация не удалась",
+    "app.auth_cancelled": "Авторизация отменена",
+    "app.auth_timeout": "Сессия истекла",
+    "app.reconnect_failed": "Соединение потеряно. Попробуйте снова.",
+    "app.about_auth": "Пост-Квантовая авторизация",
+    "auth.about": "Пост-Квантовая авторизация",
+    "auth.scan_qr_desc": "Отсканируйте QR-код приложением Liberion для завершения авторизации.",
+    "auth.install_app": "Установить приложение Liberion",
+    "auth.install_required_android": "Для продолжения авторизации необходимо установить приложение Liberion",
+    "auth.install_required_ios": "Для продолжения авторизации необходимо установить приложение Liberion",
+    "auth.open_app": "Открыть приложение Liberion",
+    "auth.open_app_continue": "Откройте приложение Liberion для продолжения",
+    "auth.continue_auth": "Продолжить авторизацию",
+    "home.title": "Распознавайте весь мир на",
+    "home.title_highlight": "одной платформе",
+    "home.copyright": "Все права защищены"
+}

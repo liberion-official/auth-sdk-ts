@@ -1,0 +1,20 @@
+{
+    "app.auth_success": "Access granted",
+    "app.auth_in_progress": "Authorization in progress..",
+    "app.auth_failed": "Authorization failed",
+    "app.auth_cancelled": "Authorization cancelled",
+    "app.auth_timeout": "Authorization expired",
+    "app.reconnect_failed": "Connection lost. Please try again.",
+    "app.about_auth": "Post-Quantum KYC Authorization",
+    "auth.about": "Post-Quantum KYC Authorization",
+    "auth.scan_qr_desc": "Scan the QR code with the Liberion App to complete authentication.",
+    "auth.install_app": "Install Liberion App",
+    "auth.install_required_android": "To continue authentication you must have the Liberion App installed",
+    "auth.install_required_ios": "To continue authentication you must have the Liberion App installed",
+    "auth.open_app": "Open Liberion App",
+    "auth.open_app_continue": "Open Liberion App to continue",
+    "auth.continue_auth": "Continue Authentication",
+    "home.title": "Recognize the whole world on",
+    "home.title_highlight": "one platform",
+    "home.copyright": "All rights reserved"
+}

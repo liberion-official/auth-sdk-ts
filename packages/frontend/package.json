@@ -1,0 +1,81 @@
+{
+  "name": "@trust-proto/auth-react",
+  "version": "0.1.0",
+  "description": "Liberion Auth Frontend SDK - React authentication widget",
+  "main": "build/index.js",
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
+  "author": "Liberion Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liberion-official/auth-sdk-ts.git",
+    "directory": "packages/frontend"
+  },
+  "homepage": "https://github.com/liberion-official/auth-sdk-ts/tree/main/packages/frontend#readme",
+  "bugs": {
+    "url": "https://github.com/liberion-official/auth-sdk-ts/issues"
+  },
+  "keywords": [
+    "liberion",
+    "auth",
+    "authentication",
+    "react",
+    "widget",
+    "qr-code"
+  ],
+  "scripts": {
+    "build": "webpack --mode production --env target=lib",
+    "build:lib": "webpack --mode production --env target=lib",
+    "build:pack": "webpack --mode production --config webpack-pack.config.js",
+    "dev": "webpack serve --mode development --config webpack.config.js",
+    "lint": "eslint ./src --ext .js,.jsx",
+    "lint:fix": "eslint --fix ./src --ext .js,.jsx",
+    "clean": "rm -rf build dist"
+  },
+  "dependencies": {
+    "@msgpack/msgpack": "^3.1.2",
+    "eruda": "^3.4.3",
+    "i18next": "^25.6.0",
+    "qr-code-styling": "^1.9.2",
+    "react-i18next": "^16.2.3",
+    "react-router": "^7.9.5",
+    "styled-components": "^6.1.19"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/eslint-parser": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-react": "^7.28.5",
+    "@eslint/compat": "^1.4.1",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.39.0",
+    "@svgr/webpack": "^8.1.0",
+    "babel-loader": "^10.0.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^13.0.1",
+    "eslint": "^9.39.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
+    "html-webpack-plugin": "^5.6.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,17 @@
+src
+.husky
+webpack.config.js
+webpack-pack.config.js
+jsconfig.json
+.babelrc
+.lintstagedrc
+*.config.js
+*.tgz
+docs
+dist-lib
+build*
+.env*
+*.pem
+*.py
+wasm-*
+*.svg
