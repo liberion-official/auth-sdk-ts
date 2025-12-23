@@ -39,6 +39,18 @@ jobs:
       - name: Build all packages
         run: pnpm build
 
+      - name: Rename standalone bundle for release
+        run: |
+          VERSION=$(node -p "require('./packages/frontend/package.json').version")
+          cp packages/frontend/lib/liberion-auth.js packages/frontend/lib/liberion-auth-v${VERSION}.js
+          ls -lh packages/frontend/lib/
+
+      - name: Verify standalone bundle exists
+        run: |
+          test -f packages/frontend/lib/liberion-auth.js || exit 1
+          VERSION=$(node -p "require('./packages/frontend/package.json').version")
+          test -f packages/frontend/lib/liberion-auth-v${VERSION}.js || exit 1
+
       - name: Publish to npm
         run: |
           pnpm --filter "@trust-proto/*" publish --access public --no-git-checks
@@ -52,5 +64,8 @@ jobs:
           generate_release_notes: true
           draft: false
           prerelease: ${{ contains(github.ref_name, '-') }}
+          files: |
+            packages/frontend/lib/liberion-auth.js
+            packages/frontend/lib/liberion-auth-v*.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

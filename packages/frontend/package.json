@@ -5,6 +5,7 @@
   "main": "build/index.js",
   "files": [
     "build",
+    "lib",
     "README.md",
     "LICENSE"
   ],
@@ -28,13 +29,14 @@
     "qr-code"
   ],
   "scripts": {
-    "build": "webpack --mode production --env target=lib",
+    "build": "npm run build:lib && npm run build:pack",
     "build:lib": "webpack --mode production --env target=lib",
     "build:pack": "webpack --mode production --config webpack-pack.config.js",
     "dev": "webpack serve --mode development --config webpack.config.js",
     "lint": "eslint ./src --ext .js,.jsx",
     "lint:fix": "eslint --fix ./src --ext .js,.jsx",
-    "clean": "rm -rf build dist"
+    "clean": "rm -rf build dist",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@msgpack/msgpack": "^3.1.2",

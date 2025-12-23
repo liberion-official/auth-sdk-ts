@@ -1,6 +1,6 @@
 ---
 '@trust-proto/auth-node': patch
-'@trust-proto/auth-react': patch
 ---
 
-CI workflow improvements and publish automation
+- Add CommonJS support (CJS output alongside ESM)
+- Update @types/node to v25

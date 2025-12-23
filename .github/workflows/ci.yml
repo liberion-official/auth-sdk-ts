@@ -88,6 +88,7 @@ jobs:
           path: |
             packages/backend/dist
             packages/frontend/build
+            packages/frontend/lib
           retention-days: 7
 
   test:

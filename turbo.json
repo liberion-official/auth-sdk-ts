@@ -4,8 +4,8 @@
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["src/**", "tsconfig.json", "package.json", "webpack.config.js", "babel.config.js"],
-      "outputs": ["dist/**", "build/**"]
+      "inputs": ["src/**", "tsconfig.json", "package.json", "webpack.config.js", "webpack-pack.config.js", "babel.config.js"],
+      "outputs": ["dist/**", "build/**", "lib/**"]
     },
     "dev": {
       "dependsOn": ["^build"],

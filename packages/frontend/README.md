@@ -12,18 +12,27 @@ Install the npm package:
 npm i @trust-proto/auth-react
 ```
 
+## Standalone Browser Usage (CDN)
+
+**CDN Options:**
+- unpkg: `https://unpkg.com/@trust-proto/auth-react@{version}/lib/liberion-auth.js`
+- jsDelivr: `https://cdn.jsdelivr.net/npm/@trust-proto/auth-react@{version}/lib/liberion-auth.js`
+- GitHub Releases: Download from [releases page](https://github.com/liberion-official/auth-sdk-ts/releases)
+
+---
+
 ### React Example with NPM Package
 
 **Props:**
 
 | Parameter    | Type       | Required | Description                                                        |
 | ------------ | ---------- | -------- | ------------------------------------------------------------------ |
-| `backendUrl` | `string`   | ✅       | WebSocket authentication server URL                                |
-| `isOpen`     | `boolean`  | ✅       | Controls widget visibility (true/false)                            |
-| `theme`      | `string`   | ❌       | Theme mode: `'light'` or `'dark'` (default: `'dark'`)              |
-| `successCb`  | `function` | ❌       | Callback function called on success. Receives authentication token |
-| `failedCb`   | `function` | ❌       | Callback function called on error.                                 |
-| `closeCb`    | `function` | ❌       | Callback function called when widget is closed                     |
+| `backendUrl` | `string`   | ✅        | WebSocket authentication server URL                                |
+| `isOpen`     | `boolean`  | ✅        | Controls widget visibility (true/false)                            |
+| `theme`      | `string`   | ❌        | Theme mode: `'light'` or `'dark'` (default: `'dark'`)              |
+| `successCb`  | `function` | ❌        | Callback function called on success. Receives authentication token |
+| `failedCb`   | `function` | ❌        | Callback function called on error.                                 |
+| `closeCb`    | `function` | ❌        | Callback function called when widget is closed                     |
 
 Import the widget into your React application:
 
