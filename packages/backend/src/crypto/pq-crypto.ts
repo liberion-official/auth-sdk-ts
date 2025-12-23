@@ -151,6 +151,8 @@ export class PQCrypto {
       });
 
       // 2. Derive key using HKDF with protocol AAD
+      // Create a copy to satisfy stricter BufferSource types in Node.js 24+
+      const sharedSecretBuffer = Uint8Array.from(sharedSecret);
       const secretKeyRaw = await subtle.deriveBits(
         {
           name: 'HKDF',
@@ -158,14 +160,15 @@ export class PQCrypto {
           salt: PROTOCOL_AAD,
           info: PROTOCOL_AAD,
         },
-        await subtle.importKey('raw', sharedSecret, { name: 'HKDF' }, false, [
+        await subtle.importKey('raw', sharedSecretBuffer, { name: 'HKDF' }, false, [
           'deriveBits',
         ]),
         256
       );
 
-      // Zero-wipe shared secret
+      // Zero-wipe shared secrets
       sharedSecret.fill(0);
+      sharedSecretBuffer.fill(0);
 
       // 3. Build version and header
       const versionBuf = new Uint8Array([1]);
