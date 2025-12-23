@@ -1,5 +1,12 @@
 # @trust-proto/auth-node
 
+## 0.2.1
+
+### Patch Changes
+
+- [`564a55d`](https://github.com/liberion-official/auth-sdk-ts/commit/564a55d1366bee2cb9ebdf038e9080ba916bb652) - - Add CommonJS support (CJS output alongside ESM)
+  - Update @types/node to v25
+
 ## 0.2.0
 
 ### Minor Changes
