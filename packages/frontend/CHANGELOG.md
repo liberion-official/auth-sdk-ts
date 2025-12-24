@@ -1,5 +1,17 @@
 # @trust-proto/auth-react
 
+## 0.4.0
+
+### Minor Changes
+
+- [`be1e556`](https://github.com/liberion-official/auth-sdk-ts/commit/be1e5564296cf25bd65bb868481ac76cd2f2b4e2) - Add standalone UMD bundle for browser usage
+
+  The package now includes a standalone UMD bundle (`lib/liberion-auth.js`) that can be used directly in browsers without build tools. The bundle is:
+  - Available via NPM CDN: unpkg.com and jsdelivr.net
+  - Included in GitHub Releases as downloadable asset
+
+  This enables easy integration with WordPress, static sites, and other non-build-tool environments.
+
 ## 0.3.0
 
 ### Minor Changes
