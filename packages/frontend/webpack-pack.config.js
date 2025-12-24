@@ -1,16 +1,24 @@
 const path = require("path");
+const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 
+// Standalone bundle for CDN usage (React bundled inside)
+// Usage: <script src="https://cdn.jsdelivr.net/npm/@trust-proto/auth-react/lib/liberion-auth.js"></script>
+// API: LiberionAuth.open({ backendUrl, successCb, closeCb, failedCb, theme })
 module.exports = () => {
   return {
     mode: "production",
-    entry: path.join(__dirname, "src/index-pkg.js"),
+    target: "web",
+    entry: path.join(__dirname, "src/index-lib.js"),
     output: {
       path: path.resolve(__dirname, "lib"),
       filename: "liberion-auth.js",
       globalObject: "this",
-      library: "LiberionAuth",
-      libraryTarget: "umd",
+      library: {
+        name: "LiberionAuth",
+        type: "umd",
+      },
+      clean: true,
     },
     resolve: {
       extensions: [".js", ".jsx", ".json"],
@@ -65,23 +73,17 @@ module.exports = () => {
       sideEffects: false,
     },
 
-    externals: {
-      react: {
-        commonjs: "react",
-        commonjs2: "react",
-        amd: "React",
-        root: "React",
-      },
-      "react-dom": {
-        commonjs: "react-dom",
-        commonjs2: "react-dom",
-        amd: "ReactDOM",
-        root: "ReactDOM",
-      },
-    },
+    plugins: [
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1,
+      }),
+    ],
 
+    // No externals - React is bundled for standalone CDN usage
     performance: {
       hints: false,
+      maxEntrypointSize: 512000,
+      maxAssetSize: 512000,
     },
   };
 };

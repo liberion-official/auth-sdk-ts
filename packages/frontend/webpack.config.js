@@ -92,11 +92,14 @@ const webConfig = (_env, argv) => {
   };
 };
 
+// NPM package build - React component for use in React projects
+// Usage: import { LiberionAuth } from '@trust-proto/auth-react'
+// React is a peer dependency (not bundled)
 const libConfig = () => {
   return {
     mode: "production",
     target: "web",
-    entry: path.join(__dirname, "src/index-lib.js"),
+    entry: path.join(__dirname, "src/index-pkg.js"),
     output: {
       path: path.resolve(__dirname, "build"),
       filename: "index.js",
@@ -111,8 +114,6 @@ const libConfig = () => {
       extensions: [".js", ".jsx", ".json"],
       alias: {
         "@": path.resolve(__dirname, "./src"),
-        react: path.resolve(__dirname, "./node_modules/react"),
-        "react-dom": path.resolve(__dirname, "./node_modules/react-dom"),
       },
     },
     module: {
@@ -160,6 +161,22 @@ const libConfig = () => {
         maxChunks: 1,
       }),
     ],
+
+    // React as external dependency for npm package
+    externals: {
+      react: {
+        commonjs: "react",
+        commonjs2: "react",
+        amd: "React",
+        root: "React",
+      },
+      "react-dom": {
+        commonjs: "react-dom",
+        commonjs2: "react-dom",
+        amd: "ReactDOM",
+        root: "ReactDOM",
+      },
+    },
 
     performance: {
       hints: false,

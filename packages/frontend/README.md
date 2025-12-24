@@ -2,24 +2,22 @@
 
 Liberion Auth is a modern authentication widget for web applications.
 
+## Two Ways to Use
+
+| Method             | Use Case           | React Required            |
+| ------------------ | ------------------ | ------------------------- |
+| **NPM Package**    | React applications | Yes (peer dependency)     |
+| **Standalone CDN** | Any website        | No (React bundled inside) |
+
 ---
 
-## Installation as NPM Package
+## Option 1: NPM Package (React Projects)
 
 Install the npm package:
 
 ```bash
 npm i @trust-proto/auth-react
 ```
-
-## Standalone Browser Usage (CDN)
-
-**CDN Options:**
-- unpkg: `https://unpkg.com/@trust-proto/auth-react@{version}/lib/liberion-auth.js`
-- jsDelivr: `https://cdn.jsdelivr.net/npm/@trust-proto/auth-react@{version}/lib/liberion-auth.js`
-- GitHub Releases: Download from [releases page](https://github.com/liberion-official/auth-sdk-ts/releases)
-
----
 
 ### React Example with NPM Package
 
@@ -67,7 +65,69 @@ function App() {
 export default App;
 ```
 
-### React Example with script tag
+---
+
+## Option 2: Standalone CDN (Any Website)
+
+Use this method for non-React websites. React is bundled inside — no dependencies required.
+
+**CDN Options:**
+- jsDelivr: `https://cdn.jsdelivr.net/npm/@trust-proto/auth-react@latest/lib/liberion-auth.js`
+- unpkg: `https://unpkg.com/@trust-proto/auth-react@latest/lib/liberion-auth.js`
+- GitHub Releases: Download from [releases page](https://github.com/liberion-official/auth-sdk-ts/releases)
+
+### Standalone API
+
+| Method                       | Description                       |
+| ---------------------------- | --------------------------------- |
+| `LiberionAuth.open(options)` | Open the authentication widget    |
+| `LiberionAuth.close()`       | Close the widget programmatically |
+
+**Options:**
+
+| Parameter    | Type       | Required | Description                               |
+| ------------ | ---------- | -------- | ----------------------------------------- |
+| `backendUrl` | `string`   | ✅        | WebSocket authentication server URL       |
+| `theme`      | `string`   | ❌        | `'light'` or `'dark'` (default: `'dark'`) |
+| `successCb`  | `function` | ❌        | Called on success with `{ token }` object |
+| `failedCb`   | `function` | ❌        | Called on error                           |
+| `closeCb`    | `function` | ❌        | Called when widget is closed              |
+
+### Basic HTML Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liberion Auth Demo</title>
+</head>
+<body>
+  <button id="login-btn">Login with Liberion ID</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/@trust-proto/auth-react@latest/lib/liberion-auth.js"></script>
+  <script>
+    document.getElementById('login-btn').onclick = function() {
+      LiberionAuth.open({
+        backendUrl: 'wss://your-backend-url.example.com',
+        theme: 'light',
+        successCb: function(result) {
+          console.log('Token:', result.token);
+          alert('Authentication successful!');
+        },
+        failedCb: function(error) {
+          console.error('Failed:', error);
+        },
+        closeCb: function() {
+          console.log('Widget closed');
+        }
+      });
+    };
+  </script>
+</body>
+</html>
+```
+
+### React with Script Tag (Dynamic Loading)
 
 ```jsx
 import React, { useState, useEffect } from "react";
@@ -76,44 +136,31 @@ const App = () => {
   const [isWidgetLoaded, setIsWidgetLoaded] = useState(false);
   const [token, setToken] = useState(null);
 
-  // Load widget script
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://cdn.statically.io/gh/liberion-official/auth-sdk-frontend/main/build/index.js";
+    script.src = "https://cdn.jsdelivr.net/npm/@trust-proto/auth-react@latest/lib/liberion-auth.js";
     script.async = true;
     script.onload = () => setIsWidgetLoaded(true);
     document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
+    return () => document.body.removeChild(script);
   }, []);
 
-  // Check for existing token
   useEffect(() => {
     const savedToken = localStorage.getItem("authToken");
-    if (savedToken) {
-      setToken(savedToken);
-    }
+    if (savedToken) setToken(savedToken);
   }, []);
 
   const handleLogin = () => {
     if (!isWidgetLoaded) return;
-
     window.LiberionAuth.open({
       backendUrl: "wss://your-backend-url.example.com",
+      theme: "light",
       successCb: (result) => {
-        console.log("Authentication successful, result:", result);
         localStorage.setItem("authToken", result.token);
         setToken(result.token);
       },
-      failedCb: (error) => {
-        console.error("Authentication failed:", error);
-      },
-      closeCb: () => {
-        console.log("Widget closed");
-      },
-      theme: "light",
+      failedCb: (error) => console.error("Failed:", error),
+      closeCb: () => console.log("Widget closed"),
     });
   };
 
@@ -144,3 +191,12 @@ const App = () => {
 
 export default App;
 ```
+
+---
+
+## Build Outputs
+
+| File                   | Size    | Description                            |
+| ---------------------- | ------- | -------------------------------------- |
+| `build/index.js`       | ~200 KB | NPM package (React as peer dependency) |
+| `lib/liberion-auth.js` | ~870 KB | Standalone bundle (React included)     |
