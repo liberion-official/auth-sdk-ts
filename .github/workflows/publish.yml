@@ -41,11 +41,63 @@ jobs:
         run: pnpm test
 
       - name: Create Release PR or Publish
+        id: changeset
         uses: changesets/action@v1
         with:
           publish: pnpm run release
           version: pnpm run version
           title: "chore: version packages"
           commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Attach frontend bundle to GitHub Release
+        if: steps.changeset.outputs.published == 'true'
+        run: |
+          # Parse published packages JSON
+          PUBLISHED_PACKAGES='${{ steps.changeset.outputs.publishedPackages }}'
+
+          # Validate that publishedPackages is a valid array and contains frontend package
+          if echo "${PUBLISHED_PACKAGES}" | jq -e 'type == "array" and any(.[]; .name == "@trust-proto/auth-react")' > /dev/null 2>&1; then
+            # Extract version from published packages
+            VERSION=$(echo "${PUBLISHED_PACKAGES}" | jq -r '.[] | select(.name == "@trust-proto/auth-react") | .version')
+
+            # Validate version is not empty
+            if [ -z "${VERSION}" ]; then
+              echo "❌ Error: Could not extract version from publishedPackages"
+              exit 1
+            fi
+
+            echo "Frontend package @trust-proto/auth-react@${VERSION} was published"
+
+            # Verify lib files exist
+            if [ ! -f "packages/frontend/lib/liberion-auth.js" ]; then
+              echo "❌ Error: packages/frontend/lib/liberion-auth.js not found"
+              exit 1
+            fi
+
+            # Create versioned bundle filename
+            cp packages/frontend/lib/liberion-auth.js packages/frontend/lib/liberion-auth-v${VERSION}.js
+            echo "✅ Created versioned bundle: liberion-auth-v${VERSION}.js"
+
+            # Upload files to release
+            TAG="@trust-proto/auth-react@${VERSION}"
+
+            # Check if release exists before uploading
+            if gh release view "${TAG}" > /dev/null 2>&1; then
+              echo "Uploading bundles to release ${TAG}..."
+              gh release upload "${TAG}" \
+                packages/frontend/lib/liberion-auth.js \
+                packages/frontend/lib/liberion-auth-v${VERSION}.js \
+                --clobber
+              echo "✅ Successfully uploaded bundles to release ${TAG}"
+            else
+              echo "⚠️ Release ${TAG} not found, skipping bundle upload"
+              exit 0
+            fi
+          else
+            echo "ℹ️ Frontend package @trust-proto/auth-react not published in this run"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
