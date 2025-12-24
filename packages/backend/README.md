@@ -1,6 +1,13 @@
 # @trust-proto/auth-node
 
+[![npm version](https://img.shields.io/npm/v/@trust-proto/auth-node.svg)](https://www.npmjs.com/package/@trust-proto/auth-node)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Backend SDK for Liberion decentralized authentication system. This package provides a WebSocket server that handles browser-wallet authentication flow.
+
+## Requirements
+
+- Node.js >= 20.0.0
 
 ## Installation
 
@@ -38,17 +45,18 @@ const auth = new LiberionAuth({
 
 ## Configuration
 
-| Option | Type | Required | Default | Description |
-|--------|------|----------|---------|-------------|
-| `projectId` | `string` | Yes | - | Project UUID from Liberion dashboard |
-| `secretCode` | `string` | Yes | - | Secret code for encryption |
-| `port` | `number` | No | `31313` | WebSocket server port |
-| `ssl` | `{ key: string; cert: string }` | No | - | SSL credentials for HTTPS |
-| `debug` | `boolean` | No | `false` | Enable debug logging |
-| `logger` | `ILogger` | No | `NoOpLogger` | Custom logger instance |
-| `onHello` | `(address: string) => Promise<boolean>` | No | - | Called when wallet activates |
-| `onSuccess` | `(payload: AuthPayload) => Promise<AuthResult>` | No | - | Called on successful auth |
-| `onDecline` | `(info: DeclineInfo) => Promise<void>` | No | - | Called when auth is declined |
+| Option        | Type                                            | Required | Default        | Description                          |
+| ------------- | ----------------------------------------------- | -------- | -------------- | ------------------------------------ |
+| `projectId`   | `string`                                        | Yes      | -              | Project UUID from Liberion dashboard |
+| `secretCode`  | `string`                                        | Yes      | -              | Secret code for encryption           |
+| `port`        | `number`                                        | No       | `31313`        | WebSocket server port                |
+| `ssl`         | `{ key: string; cert: string }`                 | No       | -              | SSL credentials for HTTPS            |
+| `debug`       | `boolean`                                       | No       | `false`        | Enable debug logging                 |
+| `environment` | `'production' \| 'development'`                 | No       | `'production'` | Target environment                   |
+| `logger`      | `ILogger`                                       | No       | `NoOpLogger`   | Custom logger instance               |
+| `onHello`     | `(address: string) => Promise<boolean>`         | No       | -              | Called when wallet activates         |
+| `onSuccess`   | `(payload: AuthPayload) => Promise<AuthResult>` | No       | -              | Called on successful auth            |
+| `onDecline`   | `(info: DeclineInfo) => Promise<void>`          | No       | -              | Called when auth is declined         |
 
 ## Logger Integration
 
@@ -110,28 +118,6 @@ const customLogger: ILogger = {
 - **Signature Verification**: All auth data is cryptographically signed
 - **Session Timeout**: 10-minute authorization window
 - **WebSocket Ping/Pong**: Keep-alive with 30-second interval
-
-## Types
-
-```typescript
-interface AuthPayload {
-  address: string;
-  fields: Record<string, unknown>;
-}
-
-interface AuthResult {
-  token?: string;
-  error?: string;
-}
-
-interface DeclineInfo {
-  address: string | null;
-  reason: 'user_declined' | 'timeout' | 'error' | 'unknown';
-  message: string;
-  declinedBy: 'wallet' | 'browser';
-  sessionId: string;
-}
-```
 
 ## License
 
