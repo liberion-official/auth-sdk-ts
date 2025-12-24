@@ -6,8 +6,8 @@ Thank you for your interest in contributing to Liberion Auth SDK! This document 
 
 ### Prerequisites
 
-- Node.js >= 18.0.0
-- pnpm >= 9.0.0
+- Node.js >= 20.0.0
+- pnpm >= 10.0.0
 
 ### Getting Started
 
@@ -15,7 +15,7 @@ Thank you for your interest in contributing to Liberion Auth SDK! This document 
 
 ```bash
 git clone https://github.com/liberion-official/auth-sdk-ts.git
-cd auth-sdk
+cd auth-sdk-ts
 ```
 
 2. Install dependencies:
@@ -83,11 +83,11 @@ auth-sdk/
 
 ## Pull Request Guidelines
 
-1. **Create a feature branch** from `develop`:
+1. **Create a feature branch** from `main`:
 
 ```bash
-git checkout develop
-git pull origin develop
+git checkout main
+git pull origin main
 git checkout -b feature/your-feature-name
 ```
 
@@ -117,7 +117,7 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 - `refactor:` - Code refactoring
 - `test:` - Test changes
 
-6. **Push and create a Pull Request** to `develop` branch.
+6. **Push and create a Pull Request** to `main` branch.
 
 ## Coding Standards
 
@@ -158,19 +158,33 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ## Release Process
 
-Releases are automated via GitHub Actions when a new tag is pushed:
+This project uses [Changesets](https://github.com/changesets/changesets) for versioning and publishing.
+
+### For Contributors
+
+When your PR includes changes that should be released, add a changeset:
 
 ```bash
-# Maintainers only
-git tag v1.2.3
-git push origin v1.2.3
+pnpm changeset
 ```
 
-This triggers:
-1. Running all tests
-2. Building packages
-3. Publishing to npm
-4. Creating GitHub Release
+Follow the prompts to:
+
+- Select affected packages (`@trust-proto/auth-node`, `@trust-proto/auth-react`)
+- Choose version bump type (patch/minor/major)
+- Write a summary of changes
+
+Commit the generated `.changeset/*.md` file with your PR.
+
+### For Maintainers
+
+Releases are automated via GitHub Actions:
+
+1. Merging PRs with changesets to `main` creates a "Version Packages" PR
+2. Merging the "Version Packages" PR triggers:
+   - Version bumps and changelog updates
+   - Publishing to npm
+   - Creating GitHub Releases
 
 ## Getting Help
 
