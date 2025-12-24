@@ -1,5 +1,25 @@
 # @trust-proto/auth-react
 
+## 0.4.1
+
+### Patch Changes
+
+- [`68ba1aa`](https://github.com/liberion-official/auth-sdk-ts/commit/68ba1aa0de93e7cf654e79ab1c0f0ff246013d3f) - Fix standalone bundle to properly include React
+
+  The standalone bundle (`lib/liberion-auth.js`) was incorrectly configured with `externals` for React, requiring users to load React separately. This fix:
+  - Changes entry point from `index-pkg.js` to `index-lib.js` for standalone bundle
+  - Removes `externals` so React is bundled inside (~870 KB)
+  - NPM package (`build/index.js`) now correctly uses `index-pkg.js` with React as peer dependency (~200 KB)
+
+  **Standalone CDN usage now works without external React:**
+
+  ```html
+  <script src="https://cdn.jsdelivr.net/npm/@trust-proto/auth-react/lib/liberion-auth.js"></script>
+  <script>
+    LiberionAuth.open({ backendUrl: 'wss://...', successCb: (r) => console.log(r.token) });
+  </script>
+  ```
+
 ## 0.4.0
 
 ### Minor Changes
