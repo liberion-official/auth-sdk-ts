@@ -55,18 +55,17 @@ const auth = new LiberionAuth({
 
 ## Configuration
 
-| Option        | Type                                            | Required | Default        | Description                          |
-| ------------- | ----------------------------------------------- | -------- | -------------- | ------------------------------------ |
-| `projectId`   | `string`                                        | ✅        | -              | Project UUID from Liberion dashboard |
-| `secretCode`  | `string`                                        | ✅        | -              | Secret code for encryption           |
-| `port`        | `number`                                        | ❌        | `31313`        | WebSocket server port                |
-| `ssl`         | `SSLCredentials`                                | ❌        | -              | SSL/TLS options for HTTPS server     |
-| `debug`       | `boolean`                                       | ❌        | `false`        | Enable debug logging                 |
-| `environment` | `'production' \| 'development'`                 | ❌        | `'production'` | Target environment                   |
-| `logger`      | `ILogger`                                       | ❌        | `NoOpLogger`   | Custom logger instance               |
-| `onHello`     | `(address: string) => Promise<boolean>`         | ❌        | -              | Check if user is registered          |
-| `onSuccess`   | `(payload: AuthPayload) => Promise<AuthResult>` | ❌        | -              | Called on successful auth            |
-| `onDecline`   | `(info: DeclineInfo) => Promise<void>`          | ❌        | -              | Called when auth is declined         |
+| Option       | Type                                            | Required | Default      | Description                          |
+| ------------ | ----------------------------------------------- | -------- | ------------ | ------------------------------------ |
+| `projectId`  | `string`                                        | ✅        | -            | Project UUID from Liberion dashboard |
+| `secretCode` | `string`                                        | ✅        | -            | Secret code for encryption           |
+| `port`       | `number`                                        | ❌        | `31313`      | WebSocket server port                |
+| `ssl`        | `SSLCredentials`                                | ❌        | -            | SSL/TLS options for HTTPS server     |
+| `debug`      | `boolean`                                       | ❌        | `false`      | Enable debug logging                 |
+| `logger`     | `ILogger`                                       | ❌        | `NoOpLogger` | Custom logger instance               |
+| `onHello`    | `(address: string) => Promise<boolean>`         | ❌        | -            | Check if user is registered          |
+| `onSuccess`  | `(payload: AuthPayload) => Promise<AuthResult>` | ❌        | -            | Called on successful auth            |
+| `onDecline`  | `(info: DeclineInfo) => Promise<void>`          | ❌        | -            | Called when auth is declined         |
 
 ## Callbacks
 
