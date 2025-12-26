@@ -1,15 +1,9 @@
 import { createRoot } from "react-dom/client";
-import { WIDGET_SCRIPT_ID, DEBUG } from "@/common/constants";
+import { WIDGET_SCRIPT_ID } from "@/common/constants";
 import Providers from "@/common/context/providers";
 import LibApp from "@/common/components/App/LibApp";
 import { logError } from "@/common/utils";
 import "@/common/i18n";
-
-if (DEBUG) {
-  import("eruda").then((eruda) => {
-    eruda.default.init();
-  });
-}
 
 let root = null;
 let container = null;

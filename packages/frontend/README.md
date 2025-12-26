@@ -46,7 +46,7 @@ function App() {
       <button onClick={() => setIsOpen(true)}>Login with Liberion ID</button>
 
       <LiberionAuth
-        backendUrl="wss://your-backend-url.example.com"
+        backendUrl="wss://your-server.address"
         isOpen={isOpen}
         theme="light"
         closeCb={() => setIsOpen(false)}

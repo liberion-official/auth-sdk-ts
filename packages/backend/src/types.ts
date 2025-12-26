@@ -2,6 +2,7 @@
  * Liberion Auth Backend SDK Types
  */
 
+import type { SecureContextOptions } from 'tls';
 import type { Environment } from './blockchain/constants.js';
 
 // Re-export Environment for convenience
@@ -31,12 +32,11 @@ export interface UserToken {
 }
 
 /**
- * SSL credentials for HTTPS server
+ * SSL/TLS credentials for HTTPS server
+ * Accepts all options from Node.js tls.SecureContextOptions
+ * @see https://nodejs.org/api/tls.html#tlscreatesecurecontextoptions
  */
-export interface SSLCredentials {
-  key: string;
-  cert: string;
-}
+export type SSLCredentials = SecureContextOptions;
 
 /**
  * Decline reason categories
