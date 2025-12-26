@@ -1,5 +1,11 @@
 # @trust-proto/auth-node
 
+## 0.2.3
+
+### Patch Changes
+
+- [`1b034e5`](https://github.com/liberion-official/auth-sdk-ts/commit/1b034e5126c63dce603df8e1d21890335fbc0d11) - - Update docs
+
 ## 0.2.2
 
 ### Patch Changes
