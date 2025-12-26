@@ -1,5 +1,12 @@
 # @trust-proto/auth-node
 
+## 0.2.2
+
+### Patch Changes
+
+- [`587572f`](https://github.com/liberion-official/auth-sdk-ts/commit/587572f3ad2714c6390eda64352bcd7d34c2cc87) - - Extended `SSLCredentials` type to accept all `tls.SecureContextOptions` from Node.js
+  - Improved documentation: detailed callback descriptions (`onHello`, `onSuccess`, `onDecline`), updated Authentication Flow and Security Features sections
+
 ## 0.2.1
 
 ### Patch Changes
