@@ -1,5 +1,12 @@
 # @trust-proto/auth-react
 
+## 0.4.2
+
+### Patch Changes
+
+- [`587572f`](https://github.com/liberion-official/auth-sdk-ts/commit/587572f3ad2714c6390eda64352bcd7d34c2cc87) - - Removed debug dependency from production bundle
+  - Updated documentation examples
+
 ## 0.4.1
 
 ### Patch Changes
