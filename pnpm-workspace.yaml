@@ -3,5 +3,5 @@ packages:
 
 # Настройки pnpm (перенесены из .npmrc)
 autoInstallPeers: true
-shamefullyHoist: false
+shamefullyHoist: true
 strictPeerDependencies: false

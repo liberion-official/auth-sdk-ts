@@ -176,6 +176,18 @@ const libConfig = () => {
         amd: "ReactDOM",
         root: "ReactDOM",
       },
+      "react/jsx-runtime": {
+        commonjs: "react/jsx-runtime",
+        commonjs2: "react/jsx-runtime",
+        amd: "react/jsx-runtime",
+        root: "React",
+      },
+      "react/jsx-dev-runtime": {
+        commonjs: "react/jsx-dev-runtime",
+        commonjs2: "react/jsx-dev-runtime",
+        amd: "react/jsx-dev-runtime",
+        root: "React",
+      },
     },
 
     performance: {

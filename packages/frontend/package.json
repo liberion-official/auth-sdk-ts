@@ -39,11 +39,10 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@msgpack/msgpack": "^3.1.2",
+    "@msgpack/msgpack": "3.1.2",
     "i18next": "^25.7.3",
     "qr-code-styling": "^1.9.2",
     "react-i18next": "^16.5.0",
-    "react-router": "^7.11.0",
     "styled-components": "^6.1.19"
   },
   "peerDependencies": {
