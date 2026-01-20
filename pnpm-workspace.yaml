@@ -1,7 +1,7 @@
 packages:
   - 'packages/*'
 
-# Настройки pnpm (перенесены из .npmrc)
+# pnpm settings (moved from .npmrc)
 autoInstallPeers: true
 shamefullyHoist: false
 strictPeerDependencies: false

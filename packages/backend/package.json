@@ -44,7 +44,7 @@
     "@msgpack/msgpack": "^3.1.2",
     "@noble/post-quantum": "^0.5.4",
     "ethers": "^6.16.0",
-    "libsodium-wrappers": "^0.7.15",
+    "libsodium-wrappers": "0.7.15",
     "uuid": "^13.0.0",
     "ws": "^8.18.2"
   },
