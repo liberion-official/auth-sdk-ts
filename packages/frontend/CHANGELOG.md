@@ -1,5 +1,14 @@
 # @trust-proto/auth-react
 
+## 0.4.3
+
+### Patch Changes
+
+- [`882525e`](https://github.com/liberion-official/auth-sdk-ts/commit/882525e00f88c23266bc23caaa9525f1c1a106f4) - Remove react-router dependency and simplify frontend architecture
+  - Removed react-router from dependencies (reduces bundle size)
+  - Added jsx-runtime externals to webpack for proper React 18+ support
+  - Simplified StandaloneAuthPage component
+
 ## 0.4.2
 
 ### Patch Changes

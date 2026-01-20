@@ -1,6 +1,6 @@
 {
   "name": "@trust-proto/auth-node",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Liberion Auth Backend SDK with post-quantum cryptography",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

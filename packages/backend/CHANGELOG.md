@@ -1,5 +1,12 @@
 # @trust-proto/auth-node
 
+## 0.2.4
+
+### Patch Changes
+
+- [`01ed2aa`](https://github.com/liberion-official/auth-sdk-ts/commit/01ed2aa4267a6da2f2927f5b0ea789d0044fa710) - Pin libsodium-wrappers to 0.7.15
+  - Fixed ESM module resolution issue in libsodium-wrappers 0.7.16
+
 ## 0.2.3
 
 ### Patch Changes
